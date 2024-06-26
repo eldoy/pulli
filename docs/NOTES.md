@@ -5,4 +5,4 @@ Same API as Axios, except:
 
 * Supports Socks5 (Tor proxy)
 
-* Does not throw exceptions, just returns status and data
+* Does not throw exceptions, just returns data, status and response headers
