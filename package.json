@@ -1,0 +1,22 @@
+{
+  "name": "waveorb-http",
+  "version": "0.1.0",
+  "description": "Waveorb http",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldoy/waveorb-http.git"
+  },
+  "author": "Vidar Eldøy <vidar@eldoy.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eldoy/waveorb-http/issues"
+  },
+  "homepage": "https://github.com/eldoy/waveorb-http#readme"
+}
