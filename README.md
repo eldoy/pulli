@@ -11,7 +11,7 @@ npm i waveorb-http
 
 Same as Axios get and post, except it supports retries and Sock5.
 
-```
+```js
 var http = require('waveorb-http')
 
 // Get request
