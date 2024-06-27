@@ -1,10 +1,7 @@
 var furu = require('furu')
 
-async function handleRequest(req) {
+furu({ port: 9000 }, async function (req) {
   if (req.pathname == '/test') {
     return { method: req.method }
   }
-  return
-}
-
-furu({ port: 9000 }, handleRequest)
+})
