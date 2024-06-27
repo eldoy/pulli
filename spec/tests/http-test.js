@@ -135,3 +135,23 @@ xit('should use different IP address via socks5', async ({ $, t }) => {
 
   t.notEqual(axiosIp, socks5Ip)
 })
+
+it('should retry', async ({ $, t }) => {
+  async function clean() {
+    return $.http('http://localhost:9000/test/retry/clean')
+  }
+
+  var request = { url: 'http://localhost:9000/test/retry' }
+
+  var result = await $.http(request)
+  t.equal(result.status, 500)
+  await clean()
+
+  result = await $.http({ ...request, retries: 1 })
+  t.equal(result.status, 500)
+  await clean()
+
+  var result = await $.http({ ...request, retries: 2 })
+  t.equal(result.status, 200)
+  await clean()
+})
