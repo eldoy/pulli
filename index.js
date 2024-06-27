@@ -1,7 +1,18 @@
 var { SocksProxyAgent } = require('socks-proxy-agent')
 var axios = require('./lib/axios')
 
-module.exports = async function (config = {}) {
+function alias(method) {
+  return async function (url, config = {}) {
+    if (typeof url == 'object') {
+      config = url
+    } else {
+      config = { ...config, url }
+    }
+    return http({ ...config, method })
+  }
+}
+
+var http = async function (config = {}) {
   if (typeof config == 'string') {
     config = { url: config, method: 'get' }
   }
@@ -16,3 +27,13 @@ module.exports = async function (config = {}) {
 
   return axios.request(config)
 }
+
+http.get = alias('get')
+http.patch = alias('patch')
+http.post = alias('post')
+http.put = alias('put')
+http.delete = alias('delete')
+http.options = alias('options')
+http.head = alias('head')
+
+module.exports = http
