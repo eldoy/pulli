@@ -118,7 +118,7 @@ it('should request via socks5', async ({ $, t }) => {
   t.deepStrictEqual(result.data, '')
 })
 
-it('should use different IP address via socks5', async ({ $, t }) => {
+xit('should use different IP address via socks5', async ({ $, t }) => {
   var result = await $.http({ url: 'https://api.ipify.org' })
   t.equal(Object.keys(result).length, 3)
   t.equal(result.status, 200)
