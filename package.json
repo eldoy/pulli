@@ -19,13 +19,13 @@
     "url": "https://github.com/eldoy/waveorb-http/issues"
   },
   "homepage": "https://github.com/eldoy/waveorb-http#readme",
-  "devDependencies": {
-    "furu": "^0.3.1",
-    "spekk": "^0.2.2"
-  },
   "dependencies": {
     "axios": "^1.7.2",
     "axios-retry": "^4.4.1",
-    "tor-request": "^3.1.0"
+    "socks-proxy-agent": "^8.0.3"
+  },
+  "devDependencies": {
+    "furu": "^0.3.1",
+    "spekk": "^0.2.2"
   }
 }
