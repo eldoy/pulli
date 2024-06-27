@@ -5,9 +5,8 @@ var retries = 0
 furu({ port: 9000 }, async function (req, res) {
   switch (req.pathname) {
     case '/test':
-      return { method: req.method }
+      return { method: req.method, body: req.body }
     case '/test/retry':
-      console.log({ retries })
       if (retries < 2) {
         retries++
         res.statusCode = 500
