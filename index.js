@@ -1,4 +1,4 @@
-var axios = require('axios')
+var axios = require('axios').default
 var axiosRetry = require('axios-retry')
 var { SocksProxyAgent } = require('socks-proxy-agent')
 
@@ -14,6 +14,11 @@ async function http(config = {}) {
   }
 
   if (config.retries) {
+    if (typeof config.retryCondition != 'function') {
+      config.retryCondition = function (error) {
+        return axiosRetry.isRetryableError(error)
+      }
+    }
     axiosRetry.default(axios, config)
   }
 

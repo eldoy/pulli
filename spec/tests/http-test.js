@@ -74,10 +74,10 @@ xit('should use different IP address via socks5', async ({ $, t }) => {
   t.notEqual(axiosIp, socks5Ip)
 })
 
-it('should request with aliases', async ({ $, t }) => {
+it('should request with ', async ({ $, t }) => {
   var request = { url: 'http://localhost:9000/test' }
 
-  var result = await $.http.get('http://localhost:9000')
+  var result = await $.http('http://localhost:9000')
   t.equal(Object.keys(result).length, 3)
   t.equal(result.status, 404)
   t.equal(typeof result.headers, 'object')
@@ -143,9 +143,11 @@ it('should retry', async ({ $, t }) => {
 
   var result = await $.http({ ...request, retries: 2 })
   t.equal(result.status, 200)
+  t.equal(result.data.method, 'GET')
   await clean()
 
-  var result = await $.http.get(request.url, { retries: 2 })
+  var result = await $.http.post(request.url, { retries: 2 })
   t.equal(result.status, 200)
+  t.equal(result.data.method, 'POST')
   await clean()
 })
