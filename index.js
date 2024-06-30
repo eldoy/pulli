@@ -31,21 +31,15 @@ async function http(config = {}) {
 
 function alias(method) {
   return async function (url, config = {}) {
-    if (typeof url == 'object') {
-      config = url
-    } else {
-      config = { ...config, url }
+    if (typeof url == 'string') {
+      config.url = url
     }
-    return http({ ...config, method })
+    config.method = method
+    return http(config)
   }
 }
 
-http.get = alias('get')
-http.patch = alias('patch')
-http.post = alias('post')
-http.put = alias('put')
-http.delete = alias('delete')
-http.options = alias('options')
-http.head = alias('head')
+var aliases = ['get', 'patch', 'post', 'put', 'delete', 'options', 'head']
+aliases.forEach((verb) => (http[verb] = alias(verb)))
 
 module.exports = http
