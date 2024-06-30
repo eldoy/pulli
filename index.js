@@ -1,4 +1,4 @@
-var axios = require('axios').default
+var axios = require('axios')
 var axiosRetry = require('axios-retry')
 var { SocksProxyAgent } = require('socks-proxy-agent')
 
