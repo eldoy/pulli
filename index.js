@@ -7,10 +7,8 @@ async function http(config = {}) {
     config = { url: config }
   }
 
-  var { socks5, ...config } = config
-
-  if (socks5) {
-    var { host = 'localhost', port = '9050' } = socks5
+  if (config.socks5) {
+    var { host = 'localhost', port = '9050' } = config.socks5
     var url = `socks5://${host}:${port}`
     config.httpsAgent = new SocksProxyAgent(url)
   }
