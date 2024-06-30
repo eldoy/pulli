@@ -2,6 +2,12 @@
 
 Waveorb HTTP Client. Based on Axios.
 
+Features:
+- Very easy to use
+- Supports automatic retries
+- Can be used with Socks5 proxies on the Tor Network
+- Does not throw errors
+
 ### Install
 
 ```
