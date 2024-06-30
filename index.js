@@ -47,7 +47,9 @@ function alias(method) {
   }
 }
 
-var aliases = ['get', 'patch', 'post', 'put', 'delete', 'options', 'head']
-aliases.forEach((verb) => (http[verb] = alias(verb)))
+var methods = ['get', 'patch', 'post', 'put', 'delete', 'options', 'head']
+for (var method of methods) {
+  http[method] = alias(method)
+}
 
 module.exports = http
