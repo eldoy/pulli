@@ -36,6 +36,9 @@ async function http(config = {}) {
 
 function alias(method) {
   return async function (url, config = {}) {
+    if (typeof url == 'object') {
+      config = url
+    }
     if (typeof url == 'string') {
       config.url = url
     }
