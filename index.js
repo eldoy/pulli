@@ -1,5 +1,23 @@
+var axios = require('axios')
+var axiosRetry = require('axios-retry')
 var { SocksProxyAgent } = require('socks-proxy-agent')
-var request = require('./lib/request.js')
+
+async function request(config) {
+  if (config.retries) {
+    axiosRetry.default(axios, config)
+  }
+
+  var res
+  try {
+    res = await axios(config)
+  } catch (err) {
+    res = err.response
+  }
+
+  var { status, headers, data } = res
+
+  return { status, headers, data }
+}
 
 function alias(method) {
   return async function (url, config = {}) {
