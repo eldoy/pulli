@@ -2,14 +2,14 @@ var axios = require('axios')
 var axiosRetry = require('axios-retry')
 var { SocksProxyAgent } = require('socks-proxy-agent')
 
-async function request(config) {
-  if (config.retries) {
-    axiosRetry.default(axios, config)
+async function request(options) {
+  if (options.retries) {
+    axiosRetry.default(axios, options)
   }
 
   var res
   try {
-    res = await axios(config)
+    res = await axios(options)
   } catch (err) {
     res = err.response
   }
@@ -20,30 +20,30 @@ async function request(config) {
 }
 
 function alias(method) {
-  return async function (url, config = {}) {
+  return async function (url, options = {}) {
     if (typeof url == 'object') {
-      config = url
+      options = url
     } else {
-      config = { ...config, url }
+      options = { ...options, url }
     }
-    return http({ ...config, method })
+    return http({ ...options, method })
   }
 }
 
-var http = async function (config = {}) {
-  if (typeof config == 'string') {
-    config = { url: config, method: 'get' }
+async function http(options = {}) {
+  if (typeof options == 'string') {
+    options = { url: options }
   }
 
-  var { socks5, ...config } = config
+  var { socks5, ...options } = options
 
   if (socks5) {
     var { host = 'localhost', port = '9050' } = socks5
     var url = `socks5://${host}:${port}`
-    config.httpsAgent = new SocksProxyAgent(url)
+    options.httpsAgent = new SocksProxyAgent(url)
   }
 
-  return request(config)
+  return request(options)
 }
 
 http.get = alias('get')
