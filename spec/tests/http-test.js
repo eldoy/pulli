@@ -2,12 +2,12 @@ it('should request via axios', async ({ $, t }) => {
   var request = { url: 'http://localhost:9000/test' }
 
   var result = await $.http('http://localhost:9000')
+
   t.equal(Object.keys(result).length, 3)
   t.equal(result.status, 404)
   t.equal(typeof result.headers, 'object')
-  t.deepStrictEqual(result.data, {
-    error: 'AxiosError: Request failed with status code 404'
-  })
+
+  t.equal(result.data, '')
 
   result = await $.http(request.url)
   t.equal(Object.keys(result).length, 3)
@@ -35,9 +35,7 @@ it('should request via socks5', async ({ $, t }) => {
   t.equal(Object.keys(result).length, 3)
   t.equal(result.status, 404)
   t.equal(typeof result.headers, 'object')
-  t.deepStrictEqual(result.data, {
-    error: 'AxiosError: Request failed with status code 404'
-  })
+  t.equal(result.data, '')
 
   result = await $.http(request)
   t.equal(Object.keys(result).length, 3)
@@ -83,9 +81,7 @@ it('should request with aliases', async ({ $, t }) => {
   t.equal(Object.keys(result).length, 3)
   t.equal(result.status, 404)
   t.equal(typeof result.headers, 'object')
-  t.deepStrictEqual(result.data, {
-    error: 'AxiosError: Request failed with status code 404'
-  })
+  t.equal(result.data, '')
 
   result = await $.http.get(request.url)
   t.equal(Object.keys(result).length, 3)
