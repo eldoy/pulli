@@ -1,13 +1,11 @@
 {
   "name": "waveorb-http",
   "version": "0.1.0",
-  "description": "Waveorb http",
+  "description": "Waveorb HTTP",
   "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "nodemon -q --exec spekk"
+    "test": "nodemon -q --exec spekk",
+    "serve:test": "nodemon spec/server.js"
   },
   "repository": {
     "type": "git",
