@@ -1,5 +1,5 @@
 var { SocksProxyAgent } = require('socks-proxy-agent')
-var axios = require('./lib/axios')
+var request = require('./lib/request.js')
 
 function alias(method) {
   return async function (url, config = {}) {
@@ -25,7 +25,7 @@ var http = async function (config = {}) {
     config.httpsAgent = new SocksProxyAgent(url)
   }
 
-  return axios.request(config)
+  return request(config)
 }
 
 http.get = alias('get')
