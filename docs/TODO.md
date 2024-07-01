@@ -7,3 +7,4 @@
 - [ ] Add link to Tor instructions to README.md
 
 - [ ] Need a callback on error so we can use `waveorb-error` to store errors and retries
+  - must be documented in README
