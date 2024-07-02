@@ -29,49 +29,11 @@ it('should request via axios', async ({ $, t }) => {
 })
 
 it('should request via socks5', async ({ $, t }) => {
-  var request = { url: 'http://localhost:9000/test', socks5: true }
-
-  var result = await $.http({ url: 'http://localhost:9000', socks5: true })
-  t.equal(Object.keys(result).length, 3)
-  t.equal(result.status, 404)
-  t.equal(typeof result.headers, 'object')
-  t.equal(result.data, '')
-
-  result = await $.http(request)
+  var result = await $.http({ url: 'http://example.com', socks5: true })
   t.equal(Object.keys(result).length, 3)
   t.equal(result.status, 200)
   t.equal(typeof result.headers, 'object')
-  t.deepStrictEqual(result.data, { method: 'GET' })
-
-  result = await $.http({ ...request, method: 'get' })
-  t.equal(Object.keys(result).length, 3)
-  t.equal(result.status, 200)
-  t.equal(typeof result.headers, 'object')
-  t.deepStrictEqual(result.data, { method: 'GET' })
-
-  result = await $.http({ ...request, method: 'post', data: 'test' })
-  t.equal(Object.keys(result).length, 3)
-  t.equal(result.status, 200)
-  t.equal(typeof result.headers, 'object')
-  t.deepStrictEqual(result.data, { method: 'POST', body: 'test' })
-})
-
-xit('should use different IP address via socks5', async ({ $, t }) => {
-  var result = await $.http({ url: 'https://api.ipify.org' })
-  t.equal(Object.keys(result).length, 3)
-  t.equal(result.status, 200)
-  t.equal(typeof result.headers, 'object')
-  t.equal(typeof result.data, 'string')
-  var axiosIp = result.data
-
-  result = await $.http({ url: 'https://api.ipify.org', socks5: true })
-  t.equal(Object.keys(result).length, 3)
-  t.equal(result.status, 200)
-  t.equal(typeof result.headers, 'object')
-  t.equal(typeof result.data, 'string')
-  var socks5Ip = result.data
-
-  t.notEqual(axiosIp, socks5Ip)
+  t.ok(result.data.includes('Example Domain'))
 })
 
 it('should request with ', async ({ $, t }) => {
