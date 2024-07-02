@@ -36,7 +36,7 @@ it('should request via socks5', async ({ $, t }) => {
   t.ok(result.data.includes('Example Domain'))
 })
 
-it('should request with ', async ({ $, t }) => {
+it('should request with alias', async ({ $, t }) => {
   var request = { url: 'http://localhost:9000/test' }
 
   var result = await $.http('http://localhost:9000')
