@@ -37,6 +37,13 @@ var { data, status, headers } = await http.get('/some/url', { retries: 3 })
 ```
 
 #### Request via Socks5
+
+In order to run a Tor proxy in `localhost:9050`:
+- Install: `brew install tor`
+- Run: `tor`
+
+More [here](https://gist.github.com/skippednote/ca7b40620858b57668a0abba2ed9ef85).
+
 ```js
 var http = require('waveorb-http')
 
@@ -58,6 +65,24 @@ var { data, status, headers } = await http.patch('/some/url', { retries: 3 })
 var { data, status, headers } = await http.delete('/some/url')
 var { data, status, headers } = await http.options('/some/url')
 var { data, status, headers } = await http.head('/some/url')
+```
+
+#### Request with status callbacks
+```js
+var http = require('waveorb-http')
+
+var success
+var error
+
+function onsuccess({ data, status, headers, config, response }) {
+  success = true
+}
+
+function onerror({ data, status, headers, config, response }) {
+  error = true
+}
+
+var { data, status, headers } = await http.get('/some/url', { onsuccess, onerror })
 ```
 
 Created by [Eldøy Projects](https://eldoy.com)
