@@ -23,15 +23,30 @@ async function http(config = {}) {
   }
 
   var res
+  var success
+  var error
+
   try {
     res = await axios(config)
+    success = true
   } catch (err) {
     res = err.response
+    error = true
   }
 
-  var { status, headers, data } = res
+  var response = {
+    status: res.status,
+    headers: res.headers,
+    data: res.data
+  }
 
-  return { status, headers, data }
+  if (success && config.onsuccess) {
+    await config.onsuccess({ ...response, config, response: res })
+  } else if (error && config.onerror) {
+    await config.onerror({ ...response, config, response: res })
+  }
+
+  return response
 }
 
 function alias(method) {
