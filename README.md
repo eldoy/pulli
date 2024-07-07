@@ -1,6 +1,6 @@
-# Pulli
+# Pulli HTTP Client
 
-Pulli HTTP Client.
+HTTP client based on Axios and a minimal set of plugins.
 
 Features:
 - Very easy to use
