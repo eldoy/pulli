@@ -1,6 +1,6 @@
-# Waveorb HTTP
+# Pulli
 
-Waveorb HTTP Client. Based on Axios.
+Pulli HTTP Client.
 
 Features:
 - Very easy to use
@@ -11,7 +11,7 @@ Features:
 ### Install
 
 ```
-npm i waveorb-http
+npm i pulli
 ```
 
 ### Usage
@@ -19,7 +19,7 @@ npm i waveorb-http
 Same as Axios get and post, except it supports retries and Socks5.
 
 ```js
-var http = require('waveorb-http')
+var http = require('pulli')
 
 // Get request
 var { data, status, headers } = await http('/some/url')
@@ -31,7 +31,7 @@ var { data, status, headers } = await http({ url: '/some/url', method: 'post' })
 
 #### Request with retries
 ```js
-var http = require('waveorb-http')
+var http = require('pulli')
 
 var { data, status, headers } = await http.get('/some/url', { retries: 3 })
 ```
@@ -45,7 +45,7 @@ In order to run a Tor proxy in `localhost:9050`:
 More [here](https://gist.github.com/skippednote/ca7b40620858b57668a0abba2ed9ef85).
 
 ```js
-var http = require('waveorb-http')
+var http = require('pulli')
 
 var { data, status, headers } = await http.get('/some/url', { socks5: true })
 
@@ -56,7 +56,7 @@ var { data, status, headers } = await http.get('/some/url', {
 
 #### Request method aliases
 ```js
-var http = require('waveorb-http')
+var http = require('pulli')
 
 var { data, status, headers } = await http.get('/some/url')
 var { data, status, headers } = await http.post('/some/url', { data: 'test' })
@@ -69,7 +69,7 @@ var { data, status, headers } = await http.head('/some/url')
 
 #### Request with status callbacks
 ```js
-var http = require('waveorb-http')
+var http = require('pulli')
 
 var success
 var error

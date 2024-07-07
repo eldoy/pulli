@@ -2,7 +2,7 @@ var axios = require('axios')
 var axiosRetry = require('axios-retry')
 var { SocksProxyAgent } = require('socks-proxy-agent')
 
-async function http(config = {}) {
+async function pulli(config = {}) {
   if (typeof config == 'string') {
     config = { url: config }
   }
@@ -52,13 +52,13 @@ function alias(method) {
       config.url = url
     }
     config.method = method
-    return http(config)
+    return pulli(config)
   }
 }
 
 var methods = ['get', 'patch', 'post', 'put', 'delete', 'options', 'head']
 for (var method of methods) {
-  http[method] = alias(method)
+  pulli[method] = alias(method)
 }
 
-module.exports = http
+module.exports = pulli
