@@ -22,28 +22,22 @@ async function http(config = {}) {
     axiosRetry.default(axios, config)
   }
 
-  var res
-  var success
-  var error
-
+  var response
   try {
-    res = await axios(config)
-    success = true
+    response = await axios(config)
   } catch (err) {
-    res = err.response
-    error = true
+    response = err.response
+    response.error = err
   }
 
-  var response = {
-    status: res.status,
-    headers: res.headers,
-    data: res.data
-  }
-
-  if (success && config.onsuccess) {
-    await config.onsuccess({ ...response, config, response: res })
-  } else if (error && config.onerror) {
-    await config.onerror({ ...response, config, response: res })
+  if (response.error) {
+    if (config.onerror) {
+      await config.onerror(response)
+    }
+  } else {
+    if (config.onsuccess) {
+      await config.onsuccess(response)
+    }
   }
 
   return response
