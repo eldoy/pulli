@@ -1,7 +1,7 @@
 {
-  "name": "waveorb-http",
+  "name": "pulli",
   "version": "0.1.0",
-  "description": "Waveorb HTTP",
+  "description": "Pulli HTTP client",
   "main": "index.js",
   "scripts": {
     "test": "nodemon -q --exec spekk",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eldoy/waveorb-http.git"
+    "url": "git+https://github.com/eldoy/pulli.git"
   },
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eldoy/waveorb-http/issues"
+    "url": "https://github.com/eldoy/pulli/issues"
   },
-  "homepage": "https://github.com/eldoy/waveorb-http#readme",
+  "homepage": "https://github.com/eldoy/pulli#readme",
   "dependencies": {
     "axios": "^1.7.2",
     "axios-retry": "^4.4.1",
