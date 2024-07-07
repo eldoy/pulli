@@ -59,14 +59,14 @@ The repsonse object looks like this:
 ```
 
 
-#### Request with retries
+### Request with retries
 ```js
 var http = require('pulli')
 
 var response = await http.get('/some/url', { retries: 3 })
 ```
 
-#### Request via Socks5
+### Request via Socks5
 
 In order to run a Tor proxy in `localhost:9050`:
 - Install: `brew install tor`
@@ -84,7 +84,7 @@ var response = await http.get('/some/url', {
 })
 ```
 
-#### Request method aliases
+### Request method aliases
 ```js
 var http = require('pulli')
 
@@ -97,7 +97,7 @@ var response = await http.options('/some/url')
 var response = await http.head('/some/url')
 ```
 
-#### Request with status callbacks
+### Request with status callbacks
 ```js
 var http = require('pulli')
 
