@@ -89,8 +89,8 @@ var response = await http.get('/some/url', {
 var http = require('pulli')
 
 var response = await http.get('/some/url')
-var response = await http.post('/some/url', { data: 'test' })
-var response = await http.put('/some/url', { socks5: true, data: 'test' })
+var response = await http.post('/some/url', { data: 'hello' })
+var response = await http.put('/some/url', { socks5: true, data: 'hello' })
 var response = await http.patch('/some/url', { retries: 3 })
 var response = await http.delete('/some/url')
 var response = await http.options('/some/url')

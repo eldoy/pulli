@@ -2,41 +2,41 @@ var axios = require('axios')
 var axiosRetry = require('axios-retry')
 var { SocksProxyAgent } = require('socks-proxy-agent')
 
-async function pulli(config = {}) {
-  if (typeof config == 'string') {
-    config = { url: config }
+async function pulli(options = {}) {
+  if (typeof options == 'string') {
+    options = { url: options }
   }
 
-  if (config.socks5) {
-    var { host = 'localhost', port = '9050' } = config.socks5
+  if (options.socks5) {
+    var { host = 'localhost', port = '9050' } = options.socks5
     var url = `socks5://${host}:${port}`
-    config.httpsAgent = new SocksProxyAgent(url)
+    options.httpsAgent = new SocksProxyAgent(url)
   }
 
-  if (config.retries) {
-    if (typeof config.retryCondition != 'function') {
-      config.retryCondition = function (error) {
+  if (options.retries) {
+    if (typeof options.retryCondition != 'function') {
+      options.retryCondition = function (error) {
         return axiosRetry.isRetryableError(error)
       }
     }
-    axiosRetry.default(axios, config)
+    axiosRetry.default(axios, options)
   }
 
   var response
   try {
-    response = await axios(config)
+    response = await axios(options)
   } catch (err) {
     response = err.response
     response.error = err
   }
 
   if (response.error) {
-    if (config.onerror) {
-      await config.onerror(response)
+    if (options.onerror) {
+      await options.onerror(response)
     }
   } else {
-    if (config.onsuccess) {
-      await config.onsuccess(response)
+    if (options.onsuccess) {
+      await options.onsuccess(response)
     }
   }
 
@@ -44,15 +44,15 @@ async function pulli(config = {}) {
 }
 
 function alias(method) {
-  return async function (url, config = {}) {
+  return async function (url, options = {}) {
     if (typeof url == 'object') {
-      config = url
+      options = url
     }
     if (typeof url == 'string') {
-      config.url = url
+      options.url = url
     }
-    config.method = method
-    return pulli(config)
+    options.method = method
+    return pulli(options)
   }
 }
 
