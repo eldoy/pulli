@@ -51,7 +51,7 @@ The repsonse object looks like this:
   config: {},
 
   // `request` is the request that generated this response
-  request: {}
+  request: {},
 
   // `error` is the error object if there was an error
   error: {}
