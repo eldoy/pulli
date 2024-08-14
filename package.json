@@ -4,12 +4,12 @@
   "description": "Pulli HTTP client",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon -q --exec spekk",
+    "test": "node --test --watch",
     "serve:test": "nodemon spec/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eldoy/pulli.git"
+    "url": "https://github.com/eldoy/pulli.git"
   },
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "ISC",
@@ -23,7 +23,6 @@
     "socks-proxy-agent": "^8.0.3"
   },
   "devDependencies": {
-    "furu": "^0.3.1",
-    "spekk": "^0.2.2"
+    "furu": "^0.3.1"
   }
 }
