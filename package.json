@@ -1,6 +1,6 @@
 {
   "name": "pulli",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Pulli HTTP client",
   "main": "index.js",
   "scripts": {
