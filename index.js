@@ -26,7 +26,7 @@ async function pulli(options = {}) {
   try {
     response = await axios(options)
   } catch (err) {
-    response = err.response
+    response = err.response || {}
     response.error = err
   }
 
