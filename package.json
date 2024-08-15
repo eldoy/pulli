@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eldoy/pulli.git"
+    "url": "git+https://github.com/eldoy/pulli.git"
   },
   "author": "Vidar Eldøy <vidar@eldoy.com>",
   "license": "ISC",
